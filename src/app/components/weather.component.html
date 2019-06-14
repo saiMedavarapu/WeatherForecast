@@ -14,18 +14,18 @@
   <mat-sidenav  mode="side" opened="true" disableClose="true">    
       <form class="ga-margin-1-rem">
           <mat-form-field class="ga-width-100-per">
-            <input matInput placeholder="Enter Zip Code" [(ngModel)]="zip" [(ngModel)]='listFilter' [ngModelOptions]="{standalone: true}">
+            <input matInput placeholder="Enter Zip Code" [(ngModel)]="zip" [ngModelOptions]="{standalone: true}">
           </mat-form-field>
         </form> 
   
         <div class="ga-margin-1-rem">
-            <button mat-raised-button class="ga-width-100-per" [disabled]="!listFilter" color="primary" (click)="loadCurrentWeather()">
+            <button mat-raised-button class="ga-width-100-per"  color="primary" (click)="loadCurrentWeather()">
              Current Weather
             </button>
           </div>
       
           <div class="ga-margin-1-rem">
-            <button mat-raised-button class="ga-width-100-per" [disabled]="!listFilter" color="primary" (click)="loadForecastWeather()">
+            <button mat-raised-button class="ga-width-100-per" color="primary" (click)="loadForecastWeather()">
               Five Day Forecast
             </button>
           </div>             
