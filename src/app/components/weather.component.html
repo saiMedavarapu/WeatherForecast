@@ -1,0 +1,120 @@
+<mat-toolbar color="primary" [class.dark-theme]="isDark">
+  <span>
+      OpenWeather API Intgration
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <span>
+      <div class="ga-margin-1-rem">
+          <mat-slide-toggle (change)="toggleTheme()">Dark Mode</mat-slide-toggle>
+      </div>
+    </span>
+</mat-toolbar> 
+
+<mat-sidenav-container class="ga-sidenav-container" [class.dark-theme]="isDark">
+  <mat-sidenav  mode="side" opened="true" disableClose="true">    
+      <form class="ga-margin-1-rem">
+          <mat-form-field class="ga-width-100-per">
+            <input matInput placeholder="Enter Zip Code" [(ngModel)]="zip" [(ngModel)]='listFilter' [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </form> 
+  
+        <div class="ga-margin-1-rem">
+            <button mat-raised-button class="ga-width-100-per" [disabled]="!listFilter" color="primary" (click)="loadCurrentWeather()">
+             Current Weather
+            </button>
+          </div>
+      
+          <div class="ga-margin-1-rem">
+            <button mat-raised-button class="ga-width-100-per" [disabled]="!listFilter" color="primary" (click)="loadForecastWeather()">
+              Five Day Forecast
+            </button>
+          </div>             
+  </mat-sidenav>
+   
+    <mat-sidenav-content>
+        <span class="ga-display-inline-block">
+            <mat-card class="ga-card" *ngIf="showCurrent">        
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item> <strong>City: </strong>{{weatherDetails.cityName}}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <strong> Temparature</strong> : {{weatherDetails.currentTemperature}}F </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <strong>Minimum Temperature</strong> : {{weatherDetails.minTemperature}}F </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <strong>Maximum Temperature</strong> : {{weatherDetails.maxTemperature}}F </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item> <strong>Description</strong> : {{weatherDetails.description}}<span> 
+                            <img src="http://openweathermap.org/img/w/{{weatherDetails.icon}}.png" alt="Site Logo" width="50" height="50">
+                            </span> 
+                          </mat-list-item>
+                       </mat-list> 
+                </mat-card-content>
+              </mat-card>
+
+            <mat-card class="ga-forecast-card" *ngIf="showForecast"> 
+                <div>
+                    <h2 > Five day forecast in {{forecastData.name}} </h2>
+                  </div>
+                  <mat-tab-group color="primary">
+                    <mat-tab label="{{forecastData.details[0].date | date : 'mediumDate'}}">
+                        <mat-list>
+                            <mat-list-item> Minimum Temperature : {{forecastData.details[0].minTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Maximum Temperature : {{forecastData.details[0].maxTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Description : {{forecastData.details[0].description}}<span> 
+                                <img src="http://openweathermap.org/img/w/{{forecastData.details[0].icon}}.png" alt="Site Logo" width="50" height="50">
+                                </span> </mat-list-item>
+                           </mat-list>  
+                   </mat-tab>
+                    <mat-tab label="{{forecastData.details[1].date | date : 'mediumDate'}}"> 
+                      <mat-list>
+                          <mat-list-item> Minimum Temperature : {{forecastData.details[1].minTemperature}}F </mat-list-item>
+                          <mat-divider></mat-divider>
+                          <mat-list-item> Maximum Temperature : {{forecastData.details[1].maxTemperature}}F </mat-list-item>
+                          <mat-divider></mat-divider>
+                          <mat-list-item> Description : {{forecastData.details[1].description}}<span> 
+                              <img src="http://openweathermap.org/img/w/{{forecastData.details[1].icon}}.png" alt="Site Logo" width="50" height="50">
+                              </span> </mat-list-item>
+                         </mat-list>  
+                          </mat-tab>
+                    <mat-tab label="{{forecastData.details[2].date | date : 'mediumDate'}}">
+                        <mat-list>
+                            <mat-list-item> Minimum Temperature : {{forecastData.details[2].minTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Maximum Temperature : {{forecastData.details[2].maxTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Description : {{forecastData.details[2].description}}<span> 
+                                <img src="http://openweathermap.org/img/w/{{forecastData.details[2].icon}}.png" alt="Site Logo" width="50" height="50">
+                                </span> </mat-list-item>
+                           </mat-list> 
+                    </mat-tab>
+                    <mat-tab label="{{forecastData.details[3].date | date : 'mediumDate'}}"> 
+                        <mat-list>
+                            <mat-list-item> Minimum Temperature : {{forecastData.details[3].minTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Maximum Temperature : {{forecastData.details[3].maxTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Description : {{forecastData.details[3].description}}<span> 
+                                <img src="http://openweathermap.org/img/w/{{forecastData.details[3].icon}}.png" alt="Site Logo" width="50" height="50">
+                                </span> </mat-list-item>
+                           </mat-list>  
+                    </mat-tab>
+                    <mat-tab label="{{forecastData.details[4].date | date : 'mediumDate'}}"> 
+                        <mat-list>
+                            <mat-list-item> Minimum Temperature : {{forecastData.details[4].minTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Maximum Temperature : {{forecastData.details[4].maxTemperature}}F </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> Description : {{forecastData.details[4].description}}<span> 
+                                <img src="http://openweathermap.org/img/w/{{forecastData.details[4].icon}}.png" alt="Site Logo" width="50" height="50">
+                                </span> </mat-list-item>
+                           </mat-list>  
+                    </mat-tab>
+                  </mat-tab-group>
+              </mat-card>      
+        </span>
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
