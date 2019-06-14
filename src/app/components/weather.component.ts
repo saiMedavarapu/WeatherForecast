@@ -16,6 +16,7 @@ import {WeatherData} from '../models/weatherData.model';
 export class WeatherComponent {
   //Declrations
   title = 'Weather App';
+  listFilter;
   zip: number;
   showCurrent: boolean = false;
   showForecast: boolean = false;
