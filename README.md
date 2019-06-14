@@ -6,6 +6,8 @@ Click here for [Demo](https://youtu.be/fQyCqcOD1Ec)
 1) Download the Repository
 2) Open the project in Visual Studio Code
 3) Type 'ng serve' in the terminal
+  - If you face any issues run npm rebuild node-sass
+  - npm install
 # API Key.
 You can generate API Key from [openweathermap](https://openweathermap.org/api) or use the existing key.
 # Forecast Service
