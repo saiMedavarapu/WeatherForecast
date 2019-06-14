@@ -1,7 +1,7 @@
-# WeatherForecast:[![](https://img.shields.io/github/license/mashape/apistatus.svg)]
+# WeatherForecast:[![](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/saiMedavarapu/WeatherForecast/blob/master/LICENSE)
 Integration of Open weather API using Angular, Angular Material. It gives the Current Day weather details and 5 Day forecast.
 # Demo:
-Click for [Demo](https://youtu.be/fQyCqcOD1Ec)
+Click here for [Demo](https://youtu.be/fQyCqcOD1Ec)
 # Running Guide:
 1) Download the Repository
 2) Open the project in Visual Studio Code
